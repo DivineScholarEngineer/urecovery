@@ -1,0 +1,107 @@
+.testimonies {
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonies-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonies-title::after {
+    content: '';
+    display: block;
+    width: calc(30% - 2px); /* Adjust the width if needed */
+    height: 3px;
+    background-color: #00cc66;
+    position: absolute;
+    left: 1px; /* Adjust this value to align the line under "T" */
+    bottom: -10px; /* Adjust this value to position the line correctly */
+}
+
+.testimony {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start; /* Adjusted to avoid excessive space between text and image */
+    margin-bottom: 20px; /* Reduced gap between testimonies */
+    background: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px; /* Reduced border radius */
+    text-align: left;
+}
+
+.testimony-image {
+    width: 20%; /* Increased image width for better balance */
+    height: auto;
+    object-fit: cover;
+    margin: 0 25px 0 25px; /* Adjusted margin for consistent spacing */
+    border-radius: 4%; /* Reduced border radius */
+}
+
+.testimony-content {
+    flex: 1; /* Allows content to take up remaining space */
+    max-width: 70%; /* Ensures content doesn’t exceed 70% of the parent width */
+}
+
+.testimony-content h3 {
+    margin: 0 0 10px 0;
+}
+
+.testimony-content p {
+    font-size: 0.9em;
+    line-height: 1.4; /* Slightly reduced line height */
+    margin: 0; /* Ensure no extra margin */
+    text-align: justify;
+}
+
+.read-more-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px; /* Reduced padding */
+    background-color: #00cc66;
+    color: white;
+    border: none;
+    border-radius: 4px; /* Reduced border radius */
+    cursor: pointer;
+}
+
+.read-more-button:hover {
+    background-color: #00994d;
+}
+
+/* For odd-indexed testimonies (image on the left, text on the right) */
+.testimony.odd {
+    flex-direction: row-reverse;
+}
+
+.testimony.odd .testimony-image {
+    margin: 0 0 0 10px; /* Adjusted margin for odd testimonies */
+}
+
+@media (max-width: 768px) {
+    .testimony {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimony.odd {
+        flex-direction: column;
+    }
+
+    .testimony-image {
+        width: 80%; /* Adjusted width for mobile */
+        margin: 0 0 10px 0; /* Adjusted margin */
+    }
+
+    .testimony-content {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .read-more-button {
+        margin: 20px 0 20px 0; /* Adjusted margin */
+    }
+}

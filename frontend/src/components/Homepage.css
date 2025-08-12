@@ -1,0 +1,128 @@
+.home-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: linear-gradient(to bottom, #545353, #007636);
+    background: linear-gradient(to bottom, #545353, #cce2d6);
+    min-height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(103, 102, 102, 0.5), rgba(0, 118, 54, 0.5));
+    z-index: 1;
+}
+
+.text-columns {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.container {
+    flex: 1;
+    margin: 0 10px;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.container h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    color: white;
+}
+
+.container p {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.6;
+    color: white;
+}
+
+.no-background {
+    background-color: transparent; /* Remove background color */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .image-container {
+        height: 39vh; /* Adjust height for smaller screens */
+    }
+    .home-page{
+        align-items: flex-start;
+        min-height: 10vh;
+    }
+
+    .text-columns {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 400px; /* Adjust max-width for smaller screens */
+        padding: 10px;
+        margin: 15px 0;
+    }
+
+    .container h2 {
+        font-size: 24px; /* Adjust font-size for smaller screens */
+    }
+
+    .container p {
+        font-size: 16px; /* Adjust font-size for smaller screens */
+    }
+}
+
+
+
+/* ==== PATCH: make the hero carousel full width on desktop ==== */
+.home-page { width: 100vw; }
+
+/* Force react-responsive-carousel to use the full width of its parent */
+.home-page .carousel-root,
+.home-page .carousel,
+.home-page .slider-wrapper,
+.home-page .slider,
+.home-page .slide {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure our overlay columns stretch, the images already cover */
+.home-page .image-container { width: 100%; }
+.home-page .text-columns { width: 100%; }
+
+/* Optional: if any global .container caps width, remove it here for the hero */
+.home-page .text-columns .container {
+  max-width: none !important;
+  width: 100% !important;
+  flex: 1 1 0%;
+}

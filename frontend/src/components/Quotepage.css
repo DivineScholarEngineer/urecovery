@@ -1,0 +1,99 @@
+.quote-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    padding: 20px;
+    position: relative;
+    background-image: url('../../public/images/nature.jpg'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  .quote-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 111, 51, 0.8); /* Slightly transparent green background */
+    z-index: 1;
+  }
+  
+  .quote-content {
+    position: relative;
+    width: 100%;
+    max-width: 1620px; /* Increased max-width */
+    padding: 40px;
+    height: auto; /* Adjust height to fit content */
+    border-radius: 10px;
+    text-align: center;
+    z-index: 2; /* Ensure content is above the overlay */
+  }
+  
+  .quote-open,
+  .quote-close {
+    font-size: 3em;
+    color: #ccc;
+    position: absolute;
+  }
+  
+  .quote-open {
+    top: 10px; /* Adjusted to provide some space from the top */
+    left: 10px;
+  }
+  
+  .quote-close {
+    bottom: 10px; /* Adjusted to provide some space from the bottom */
+    right: 10px;
+  }
+  
+  .quote-text {
+    font-size: 1.5em;
+    margin: 40px 0;
+    color: #fff; /* Changed text color to white for better contrast */
+  }
+  
+  .quote-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .author-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .author-name {
+    font-size: 1.2em;
+    color: #fff; /* Changed text color to white for better contrast */
+  }
+  
+  @media (max-width: 768px) {
+    .quote-content {
+      padding: 20px;
+    }
+    .quote-container{
+        height: auto;
+    }
+  
+    .quote-open,
+    .quote-close {
+      font-size: 2em;
+    }
+  
+    .quote-text {
+      font-size: 1.2em;
+    }
+  
+    .author-name {
+      font-size: 1em;
+    }
+  }
+  

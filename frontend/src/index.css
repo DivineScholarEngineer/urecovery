@@ -1,0 +1,16 @@
+@import './tailwind.css';
+
+
+/* Full height of the body */
+html, body {
+  height: 100%;
+  background-color: transparent;
+}
+
+/* Optional: Reset margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
