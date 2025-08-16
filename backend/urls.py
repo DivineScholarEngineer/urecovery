@@ -1,30 +1,29 @@
+# backend/urls.py
 from django.contrib import admin
 from django.urls import path, re_path
-from django.views.generic import TemplateView
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.conf import settings
-from django.conf.urls.static import static
+
+# API views
+from . import api as api_views
 
 def index_view(request):
-    index_path = settings.BASE_DIR / "frontend" / "build" / "index.html"
-    if index_path.exists():
-        return HttpResponse(index_path.read_text(encoding="utf-8"))
-    # Fallback to template rendering
-    return TemplateView.as_view(template_name="build/index.html")(request)
-
-def health(_request):
-    return HttpResponse("ok")
+    # Render the built React app. TEMPLATES['DIRS'] should include the frontend dir,
+    # and STATICFILES_DIRS should include frontend/build for assets.
+    return render(request, 'build/index.html')
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("health", health, name="health"),
-    path("", index_view, name="index"),
-]
+    path('admin/', admin.site.urls),
 
-# Catch-all to SPA (but ignore /static/* so assets load)
-urlpatterns += [
-    re_path(r"^(?!static/).*$", index_view),
-]
+    # --- Auth & profile API ---
+    path('api/me', api_views.me, name='api_me'),
+    path('api/login', api_views.login, name='api_login'),
+    path('api/signup', api_views.signup, name='api_signup'),
+    path('api/logout', api_views.logout, name='api_logout'),
+    path('api/profile', api_views.update_profile, name='api_profile'),
+    path('api/password', api_views.change_password, name='api_password'),
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # Serve React on / and any unknown route (client-side routing)
+    path('', index_view, name='index'),
+    re_path(r'^(?!api/).*$', index_view),
+]
