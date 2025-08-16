@@ -1,0 +1,72 @@
+.meetup-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.meetup-container h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.underline {
+    width: 50px;
+    height: 4px;
+    background-color: #28a745;
+    margin: 0 auto 20px;
+}
+
+.counselors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.counselor {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 250px; /* Adjusted max-width to make the card bigger */
+    text-align: center;
+    overflow: hidden;
+    margin: 15px; /* Maintain previous margin */
+}
+
+.counselor img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+.counselor h2 {
+    font-size: 1.2em;
+    margin: 15px 0 5px;
+}
+
+.counselor p {
+    font-size: 1em;
+    margin: 0 0 15px;
+    color: #555;
+}
+
+.view-more {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.view-more:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .counselors {
+        flex-direction: column;
+        align-items: center;
+    }
+}

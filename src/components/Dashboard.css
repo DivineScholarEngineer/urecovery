@@ -1,0 +1,65 @@
+/* frontend/src/components/Dashboard.css */
+.dashboard {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+  background: #f7f9fb;
+  color: #0f172a;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial;
+}
+.sidebar {
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.brand { display: flex; align-items: center; gap: 8px; font-weight: 700; margin-bottom: 16px; }
+.nav { display: grid; gap: 6px; }
+.nav .section { font-size: 12px; text-transform: uppercase; color: #64748b; margin: 12px 6px 4px; }
+.nav a, .nav button {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px;
+  text-decoration: none; color: #1e293b; border: none; background: transparent; cursor: pointer;
+}
+.nav a.active, .nav button.active { background: #e8f5ee; color: #0b6b3a; font-weight: 600; }
+.content { padding: 20px 28px; }
+.card {
+  background: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; padding: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.04);
+}
+.grid { display: grid; gap: 16px; }
+.grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 1024px) {
+  .dashboard { grid-template-columns: 1fr; }
+  .sidebar { position: relative; height: auto; }
+  .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr; }
+}
+.stat { display: flex; align-items: center; justify-content: space-between; padding: 12px;
+  border-radius: 12px; background: #f0fdf4; border: 1px solid #dcfce7; }
+.profile-form label { display: block; margin-top: 10px; font-weight: 600; color: #334155; }
+.profile-form input {
+  width: 100%; padding: 10px 12px; margin-top: 6px; border: 1px solid #cbd5e1; border-radius: 10px; outline: none;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px;
+  border: 1px solid #0b6b3a; background: #0b6b3a; color: white; cursor: pointer; margin-top: 12px;
+}
+.btn.ghost { background: white; color: #0b6b3a; }
+.resource {
+  display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 12px; border: 1px solid #e5e7eb;
+}
+.chat-box { display: grid; grid-template-rows: 1fr auto; height: 420px; border: 1px solid #e5e7eb; border-radius: 16px; overflow: hidden; }
+.chat-messages { background: #f8fafc; padding: 16px; overflow-y: auto; }
+.chat-input { display: flex; gap: 8px; padding: 12px; background: #fff; border-top: 1px solid #e5e7eb; }
+.chat-input input { flex: 1; border: 1px solid #cbd5e1; border-radius: 10px; padding: 10px 12px; }
+.counselor {
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center;
+  padding: 10px; border: 1px solid #e5e7eb; border-radius: 12px;
+}
+.badge { display: inline-flex; align-items: center; gap: 6px; background: #e0f2fe; color: #075985;
+  border: 1px solid #bae6fd; border-radius: 9999px; padding: 4px 8px; font-size: 12px; }
+.footer-user { position: absolute; bottom: 16px; left: 16px; right: 16px; color: #64748b; font-size: 14px; }

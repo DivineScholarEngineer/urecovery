@@ -1,0 +1,49 @@
+/* Adds a background layer to each hero slide without changing your foreground
+   character image or text. Keeps carousel dots/arrows visible. */
+
+.hero-frame {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+/* Background image at the very back */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-bg, none);
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+  z-index: 0;
+}
+
+/* Your green overlay ABOVE the background (transparent) */
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  /* keep the same green you already use; tweak if you like */
+  background: linear-gradient(
+    to bottom,
+    rgba(100, 121, 106, 0.35),
+    rgba(107, 142, 118, 0.55)
+  );
+  z-index: 1;
+}
+
+/* Foreground character image & your text on top */
+.hero-foreground,
+.text-columns {
+  position: relative;
+  z-index: 2;
+}
+
+/* Mobile height */
+@media (max-width: 768px) {
+  .hero-frame {
+    height: 50vh;
+    min-height: 320px;
+  }
+}

@@ -1,0 +1,110 @@
+.container-book {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    height: 70vh;
+    gap: 20px; /* Add some gap between columns */
+  }
+  
+  .text-column {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .text-column h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .text-column p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .book-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #006F33;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .book-button:hover {
+    background-color: #d5dbd4;
+  }
+  
+  .image-column {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  @media (max-width: 1024px) {
+    .text-column h2 {
+      font-size: 1.8em;
+    }
+  
+    .text-column p {
+      font-size: 1.1em;
+    }
+  
+    .book-button {
+      font-size: 0.9em;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container-book {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .text-column {
+      padding: 10px;
+    }
+  
+    .text-column h2 {
+      font-size: 1.6em;
+    }
+  
+    .text-column p {
+      font-size: 1em;
+    }
+  
+    .book-button {
+      font-size: 0.8em;
+      padding: 8px 16px;
+    }
+  
+    .image-column {
+      padding: 10px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .text-column h2 {
+      font-size: 1.4em;
+    }
+  
+    .text-column p {
+      font-size: 0.9em;
+    }
+  
+    .book-button {
+      font-size: 0.7em;
+      padding: 6px 12px;
+    }
+  }
+  

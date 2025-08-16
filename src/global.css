@@ -1,0 +1,53 @@
+/* Global theme overrides to unify GUI look */
+:root {
+  --brand-bg: linear-gradient(to bottom, #545353, #cce2d6);
+  --brand-primary: #0f6f46;
+  --brand-primary-contrast: #ffffff;
+  --brand-text: #0f1e14;
+  --brand-muted: #6b7280;
+  --brand-radius: 12px;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--brand-text);
+  background: var(--brand-bg);
+}
+
+/* Links */
+a { color: var(--brand-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons */
+button, .btn {
+  border-radius: var(--brand-radius);
+  padding: 0.6rem 1rem;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-primary, button.primary {
+  background: var(--brand-primary);
+  color: var(--brand-primary-contrast);
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* Inputs */
+input, select, textarea {
+  border: 1px solid #d1d5db;
+  border-radius: var(--brand-radius);
+  padding: 0.6rem 0.8rem;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(15, 111, 70, 0.15);
+}

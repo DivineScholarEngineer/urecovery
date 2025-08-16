@@ -1,0 +1,17 @@
+.logout-chip {
+  position: fixed;
+  top: 14px;
+  right: 16px;
+  z-index: 50;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  border: none;
+  background: var(--brand-primary, #0f6f46);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  cursor: pointer;
+  transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.logout-chip:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(0,0,0,.18); }
+.logout-chip:active { transform: translateY(0); }
