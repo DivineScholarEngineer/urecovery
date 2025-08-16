@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# uRecover — README
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A compact guide to run the **uRecover** project locally with one click in PyCharm or from the command line.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## What you can do (already present in this repo)
 
-### `npm start`
+- **Run the Django backend** using `manage.py` (configured to point at `backend.settings`).  
+- **Install all Python dependencies** from `requirements.txt` in your chosen environment.  
+- **Use the existing SQLite database** (`db.sqlite3`) or create a fresh one via migrations.  
+- **Serve the frontend build** if present under `frontend/` (or you can build your own and wire it up).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+> Note: `manage.py` is set to use `backend.settings` so you don’t have to export any settings variable manually.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Python 3.x (the same interpreter you’ll use to run the server)
+- (Optional but recommended) Conda environment named `urcover`
+- Pip installed in that interpreter
 
-### `npm run build`
+If you use Conda:
+```bat
+conda create -n urcover python=3.11 -y
+conda activate urcover
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Quick Start (Command Line)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From the project root (the folder containing `manage.py` and `backend/`):
 
-### `npm run eject`
+```bat
+:: 1) Activate your environment
+conda activate urcover
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+:: 2) Install dependencies
+pip install -r requirements.txt
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+:: 3) (Optional) Apply database migrations
+python manage.py migrate
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+:: 4) Run the development server
+python manage.py runserver
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Open http://127.0.0.1:8000/
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## One-Click Run in PyCharm
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Option A (direct runserver parameter):**
 
-### Code Splitting
+1. Run → Edit Configurations… → + → Python  
+2. **Name:** Django Server (any name is fine)  
+   **Script path:** `<project_root>\manage.py`  
+   **Parameters:** `runserver`  
+   **Working directory:** `<project_root>`  
+   **Interpreter:** your Conda env (`urcover`)  
+3. Ensure **“Add content roots to PYTHONPATH”** is checked.  
+4. Click **OK**, then hit the green **Play** button.  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Option B (just run manage.py directly):**
 
-### Analyzing the Bundle Size
+1. In PyCharm, open **Run → Edit Configurations… → + → Python**  
+2. **Script path:** `<project_root>\manage.py`  
+3. **Working directory:** `<project_root>`  
+4. **Interpreter:** select your `urcover` environment  
+5. Leave **Parameters** empty.  
+6. Now click **Run**.  
+   - PyCharm will execute `python manage.py`  
+   - You’ll see Django’s command-line help, confirming it works.  
+   - From there you can add arguments (like `runserver`, `migrate`, etc.) directly inside PyCharm if you prefer.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Project Structure (typical)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+project_root/
+├─ manage.py
+├─ requirements.txt
+├─ db.sqlite3                # optional existing database
+├─ backend/
+│  ├─ __init__.py
+│  ├─ settings.py
+│  ├─ urls.py
+│  ├─ wsgi.py
+│  └─ asgi.py
+└─ frontend/
+   └─ ... (optional build or source)
+```
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## How `manage.py` is configured
 
-### Deployment
+- It ensures the project root is on `sys.path` and sets the correct settings module:
+  - `DJANGO_SETTINGS_MODULE = "backend.settings"`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+You can start the server with:
+```bat
+python manage.py runserver
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Troubleshooting
+
+### 1) “No module named 'django'”  
+Install dependencies **in the same interpreter** you’re running:
+```bat
+conda activate urcover
+pip install -r requirements.txt
+```
+
+### 2) Unicode escape path error in strings (Windows)
+Avoid raw Windows backslashes inside Python strings/docstrings. Use **forward slashes** or **double backslashes**.
+
+### 3) Import error mentions `backend.urecover`
+If an environment variable is forcing the wrong settings module, clear it:
+
+- **In Windows (Anaconda Prompt):**
+```bat
+setx DJANGO_SETTINGS_MODULE ""
+```
+Close and reopen PyCharm/terminal afterward.
+
+Also check PyCharm **Run configuration → Environment variables** and remove `DJANGO_SETTINGS_MODULE` there (or set it to `backend.settings`).
+
+---
+
+## Common Commands
+
+```bat
+python manage.py runserver
+python manage.py migrate
+python manage.py makemigrations
+python manage.py createsuperuser
+```
+
+---
+
+## Notes
+
+- If you move the project out of OneDrive into a simpler path like `C:\Projects\ucover\`, paths tend to behave better on Windows.
+- Keep `ALLOWED_HOSTS` generous (`["*"]`) during local dev; tighten it for production.
+
+---
+
+**Happy building!**
